@@ -13,7 +13,7 @@ if __name__ == "__main__":
 	aa.color_map.update(input["-cmap"])
 	repres = input["-repres"]
 	r_origami = ['helix_origami', 'helical_mesh_vert', 'helical_mesh_horiz']
-	r_strand = ['beta_sheet_origami', 'random_coil_origami']
+	r_strand = ['beta_sheet_origami', 'random_coil_origami', 'beta_sheet', 'random_coil']
 	if repres in r_origami:
 		mod_object = origami
 	elif repres in r_strand:

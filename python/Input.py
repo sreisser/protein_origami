@@ -4,25 +4,27 @@ import string, sys, re, math, locale
 import AA_Data as aa
 
 def print_info(program):
-	print """This is Protein ORIGAMI.
+	print """This is Protein ORIGAMI v1.0 .
 
 Please cite: Protein ORIGAMI - a program for the creation of 3D peptide paper models, S. Rei\{ss}er, S. Prock, H. Heinzmann, A. S. Ulrich. Submitted (2018)
 
 Options:
-\t-n name of your peptide
-\t-c one- or three-letter code for output, possible values: 1, 3 (default: 1)
-\t-repres representation (helical_wheel, helix_origami, helical_mesh_vert, helical_mesh_horiz, beta_sheet, random_coil)
-\t-cl amino acids in color or in white (color vs. bw)
-\t-pitch Helix pitch (default: 100)
-\t-ph pH values (le7(<= 7) or ge8(>= 8)) (default: <= 7)
-\t-s sequence in one-letter code, L - amino acids in capitals, D - amino acids in small letters
-\t-b begin with index (integer)
-\t-sh shift geometry by N positions (integer)
-\t-nter n-terminal modification (NH3+, CH3-CO)
-\t-cter c-terminal modification (COO-, NH-CH3, NH2)
-\t-mesh output complete sequence on one page, vertically or horizontally (vert, horiz)
-\t-o output filename (no spaces, no umlauts)
-\t-h this info
+	-n name of your peptide
+	-s amino acid sequence in one-letter code, 
+		capitals letters: L-form, small letters: D-form
+	-nter n-terminal modification: NH3 (NH3+), FOR (HCO, formyl), 
+		ACY (R-CO, acyl), default: None
+	-cter c-terminal modification: COO (COO-), NHE (NH2, amidated), 
+		LIP (NH-R, lipidated), default: None
+	-repres representation (helix_origami (default), helical_wheel, 
+		helical_mesh_vert, helical_mesh_horiz, beta_sheet, random_coil)
+	-pitch Helix pitch in degrees (default: 100)
+	-pH pH values (le7 (<= 7; default) or ge8 (>= 8))
+	-c one- or three-letter code for output, possible values: 1 (default), 3
+	-cl amino acids in color or in white: color (default), bw
+	-b begin numbering with index (integer, default: 1)
+	-sh shift geometry by N positions (integer, default: 0)
+	-h this info
 example: %s -n TisB -c 3 -s \"MNLVDIAILILKLIVAALQLLDAVLKYLK\"
 """ % program
 
@@ -64,7 +66,8 @@ input = {
 "-map" : {},
 "-cmap" : {},
 "-chmap" : {},
-"-rc" : 0
+"-rc" : 0,
+"-repres" : "helix_origami"
 }
 
 name = "" 
@@ -128,13 +131,14 @@ def check_input(arguments):
 			input["-cmap"] = new_color_map
 			input["-chmap"] = new_charge_map
 
-#	print input
-	for o in ("-n", "-s"):
-		try:
-			input[o]
-		except KeyError:
-			print "Input %s is obligatory!" % o
-			sys.exit()
+	if not "-n" in input:	
+		sys.exit("Please provide a name with -n NAME.\nSee help with '%s -h'" % sys.argv[0])
+	if not "-s" in input:	
+		sys.exit("Please provide a sequence with -s SEQUENCEONELETTERCODE.\nSee help with '%s -h'" % sys.argv[0])
+
+	# set output name
+	if not "-o" in input:
+		input["-o"] = "_".join(input["-n"].split() + [input["-repres"]])
 
 
 	return input
