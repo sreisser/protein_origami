@@ -4,13 +4,21 @@ Protein ORIGAMI (http://ibg.kit.edu/protein_origami) is a browser-based web appl
 The python code which generates the figures in SVG format can be downloaded here and installed locally on a PC. The figures can then be viewed and/or converted to PDF or PNG using a SVG editing program, we recommend inkscape (inkscape.org).
 
 CONVERSION WITH INKSCAPE
+
 SVG files can be converted to PDF or PNG 
 - via the graphical interface: 
+
 	File -> Save as (Select PDF; always for 3D paper models)
+
 	File -> Export PNG Image 
 - via the command line:
+
 	for 3D paper models, convert to PDF (seperately for each *_1.svg *_2.svg etc.):
+
 		inkscape  name_1.svg  -A name_1.pdf
+
 	for PNG format
+
 		inkscape  name.svg  -e name.png -D -b white -d 300
+
 		-d is the option for dpi, if you want higher quality, increase
