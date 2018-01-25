@@ -1,2 +1,6 @@
-# protein_origami
-3D paper models of peptides and proteins
+# Protein ORIGAMI - a program for the creation of 3D peptide paper models
+
+Protein ORIGAMI (http://ibg.kit.edu/protein_origami) is a browser-based web application that allows the user to create straightforward 3D paper models of folded peptides for research, teaching and presentations. An amino acid sequence can be turned into alpha-helices,beta-strands and random coils that can be printed out and folded into properly scaled models, with a colour code denoting the biophysical characteristics of each amino acid residue (hydrophobicity, charge, etc.). These models provide an intuitive visual and tactile understanding of peptide interactions with other partners, such as helix-helix assembly, oligomerization, membrane binding, or pore formation. Helices can also be displayed as a helical wheel or helical mesh in 2D graphics, to be used in publications or presentations. The highly versatile programme Protein ORIGAMI is also suited to create less conventional helices with arbitrary pitch (e.g. 310-helix, π-helix, or left-handed helices). Non-canonical amino acids, labels and different terminal modifications can be defined and displayed at will, and different protonation states can be shown. 
+The python code which generates the figures in SVG format can be downloaded here and installed locally on a PC. The figures can then be viewed and/or converted to PDF, PNG or JPG using a SVG editing program, we recommend inkscape (inkscape.org).
+
+
