@@ -131,7 +131,7 @@ def draw(r):
 	''' % (c2[0], c2[1], circle_radius, aa.colors[fill_color]))
 
 		# names
-		if fill_color in ('dblue', 'red'):
+		if fill_color in ('dark-blue', 'red'):
 			i_font_color = 'white'
 		else:
 			i_font_color = font_color

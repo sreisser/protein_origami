@@ -105,13 +105,10 @@ def check_input(arguments):
 			sys.exit()
 		if arg == "-map":
 			aa_map = string.split(input["-map"], ',')
-	#		print "MAP: %s" % aa_map
 			new_name_map = {}
 			for i, val in enumerate(aa_map):
 				if val != "":
-	#				print "---%s---" % val
 					entry = string.split(val, ":")
-	#				print "ENTRY: %s" % entry
 					new_name_map[entry[0]] = entry[1]
 			input["-map"] = new_name_map
 		if arg == "-cmap":
@@ -120,11 +117,9 @@ def check_input(arguments):
 			new_charge_map = {}
 			for i, val in enumerate(aa_cmap):
 				if val != "":
-	#				print "---%s---" % val
 					entry = string.split(val, ":")
-	#				print "ENTRY: %s" % entry
 					new_color_map[entry[0]] = entry[1]
-					if  entry[1] == "dblue":
+					if  entry[1] == "dark-blue":
 						new_charge_map[entry[0]] = 1
 					if  entry[1] == "red":
 						new_charge_map[entry[0]] = -1

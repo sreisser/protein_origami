@@ -154,7 +154,7 @@ def draw_amino_acid(file, letter, nr, key, n_aa, term):
 	else:
 		print_name = letter.upper()
 		dx_nr = 0
-	if fill_color in ('dblue', 'red'):
+	if fill_color in ('dark-blue', 'red'):
 		i_font_color = 'white'
 	else:
 		i_font_color = font_color

@@ -53,7 +53,7 @@ if __name__ == "__main__":
 					while aa_color not in aa.colors.keys():
 						question = "What color do you want for %s? [" % letter
 						for c in aa.colors:
-							question += "%s, " % c
+							question += " %s" % c
 						question += "]"
 						aa_color = raw_input(question)
 					aa.color_map[letter.upper()] = aa_color
@@ -62,12 +62,12 @@ if __name__ == "__main__":
 				while three_letter not in aa.name_map and not re.match('^[A-Za-z]{3}$', three_letter):
 					question = "What three-letter-code do you want for %s? " % letter
 					three_letter = raw_input(question)
-				aa.name_map[letter] = three_letter
+				aa.name_map[letter.upper()] = three_letter
 
 	mod_object.mass = 0.0
 	for key, letter in enumerate(mod_object.sequence_list):
 		if mod_object.color == "color" and letter.upper() not in aa.charge_map:
-			if aa.color_map[letter.upper()] == "dblue":
+			if aa.color_map[letter.upper()] == "dark-blue":
 				aa.charge_map.update({letter.upper(): 1})
 			elif aa.color_map[letter.upper()] == "red":
 				aa.charge_map.update({letter.upper(): -1})

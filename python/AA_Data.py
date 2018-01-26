@@ -54,25 +54,25 @@ color_map = {
 "E":"red", 
 "F":"yellow", 
 "G":"green", 
-"H":"dblue", 
+"H":"dark-blue", 
 "I":"yellow", 
-"K":"dblue", 
+"K":"dark-blue", 
 "L":"yellow", 
 "M": "yellow", 
-"N":"lblue", 
-"O": "dblue",
+"N":"light-blue", 
+"O": "dark-blue",
 "P":"green", 
-"Q":"lblue", 
-"R":"dblue", 
-"S":"lblue", 
-"T":"lblue", 
+"Q":"light-blue", 
+"R":"dark-blue", 
+"S":"light-blue", 
+"T":"light-blue", 
 "V":"yellow", 
 "W":"yellow", 
 "Y":"yellow"
 }
 
 n_term_map = {
-"NH3": "dblue",
+"NH3": "dark-blue",
 "FOR": "yellow",
 "ACY": "yellow",
 "ACE": "yellow",
@@ -87,7 +87,7 @@ c_term_map = {
 
 basic_colors = {
 "NH3": "yellow",
-"H": "lblue"
+"H": "light-blue"
 }
 color_map.update(n_term_map)
 color_map.update(c_term_map)
@@ -130,8 +130,8 @@ colors = {
 "yellow": "#fffa00",
 "green" : "#00d436",
 "red" : "#ff0000",
-"dblue" : "#0023ae",
-"lblue" : "#00d9ff",
+"dark-blue" : "#0023ae",
+"light-blue" : "#00d9ff",
 "white" : "#ffffff"
 }
 
