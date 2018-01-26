@@ -9,16 +9,25 @@ For bugs, questions or comments contact Sabine at sabine dot reisser (guesswhat)
 INSTALLATION
 
 1) Use git: 
+
 		git clone https://github.com/sabinereisser/protein_origami
+
 		cd protein_origami	
+
    or
    Download https://github.com/sabinereisser/protein_origami/archive/master.zip	
+
    		unzip protein_origami-master.zip
+
 		cd protein_origami-master
+
 2) Run install script	
+
 		bash install.sh
+
 		. ~/.bashrc
 3) Run program
+
 		protein_ORIGAMI	
 
 
