@@ -6,7 +6,7 @@ The python code which generates the figures in SVG format can be downloaded here
 
 For bugs, questions or comments contact Sabine at sabine dot reisser (guesswhat) gmail dot com.
 
-INSTALLATION
+##INSTALLATION
 
 1) Use git: 
 
@@ -31,7 +31,7 @@ INSTALLATION
 		protein_ORIGAMI	
 
 
-CONVERSION WITH INKSCAPE
+##CONVERSION WITH INKSCAPE
 
 SVG files can be converted to PDF or PNG 
 - via the graphical interface: 
