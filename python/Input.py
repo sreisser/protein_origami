@@ -48,6 +48,7 @@ example: %s -n TisB -c 3 -s \"MNLVDIAILILKLIVAALQLLDAVLKYLK\"
 
 re_input = {
 "-n" : "^\w[\s\w\-]*$",
+"-o" : "^\w[\/\s\w\-]*$",
 "-c" : "^[1|3]$",
 "-cl" : "^color$|^bw$",
 "-pH" : "^le7$|^ge8$",
@@ -61,7 +62,8 @@ re_input = {
 "-map" : "[\w:,]+", # non-usual amino-acids
 "-cmap" : "[\w:,]+", # colors for non-usual amino acids
 "-chmap" : "[\w:,]+", # colors for non-usual amino acids
-"-repres" : "^helix_origami$|^helical_wheel$|^helical_mesh_vert$|^helical_mesh_horiz$|^beta_sheet$|^beta_sheet_origami$|^random_coil$|^random_coil_origami$"
+"-repres" : "^helix_origami$|^helical_wheel$|^helical_mesh_vert$|^helical_mesh_horiz$|^beta_sheet$|^beta_sheet_origami$|^random_coil$|^random_coil_origami$",
+"-r" : "[0-9]+"
 }
 
 	# default input values
@@ -103,6 +105,7 @@ def check_input(arguments):
 			try: 
 				value = sys.argv[key+1].strip()
 			except IndexError:
+				print_info("protein_ORIGAMI")
 				print "Invalid input for %s" % arg
 				sys.exit()
 			else:
@@ -116,7 +119,7 @@ def check_input(arguments):
 		if arg in ["-nter", "-cter"] and input[arg] == "None":
 			input[arg] = "" 
 		if arg == "-h":
-			print_info(sys.argv[0])
+			print_info("protein_ORIGAMI")
 			sys.exit()
 		if arg == "-map":
 			aa_map = string.split(input["-map"], ',')
@@ -142,9 +145,11 @@ def check_input(arguments):
 			input["-chmap"] = new_charge_map
 
 	if not "-n" in input:	
-		sys.exit("Please provide a name with -n NAME.\nSee help with '%s -h'" % sys.argv[0])
+		print_info("protein_ORIGAMI")
+		sys.exit("Please provide a name with -n NAME.")
 	if not "-s" in input:	
-		sys.exit("Please provide a sequence with -s SEQUENCEONELETTERCODE.\nSee help with '%s -h'" % sys.argv[0])
+		print_info("protein_ORIGAMI")
+		sys.exit("Please provide a sequence with -s SEQUENCEONELETTERCODE.")
 
 	# set output name
 	if not "-o" in input:
