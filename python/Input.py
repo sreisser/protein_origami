@@ -27,9 +27,9 @@ Options:
 	-s amino acid sequence in one-letter code, 
 		capitals letters: L-form, small letters: D-form
 	-nter n-terminal modification: NH3 (NH3+), FOR (HCO, formyl), 
-		ACY (R-CO, acyl), default: None
+		ACY (R-CO, acyl), None; default: NH3
 	-cter c-terminal modification: COO (COO-), NHE (NH2, amidated), 
-		LIP (NH-R, lipidated), default: None
+		LIP (NH-R, lipidated), None; default: COO
 	-repres representation (helix_origami (default), helical_wheel, 
 		helical_mesh_vert, helical_mesh_horiz, beta_sheet, random_coil)
 	-pitch Helix pitch in degrees (default: 100)
@@ -49,34 +49,31 @@ example: %s -n TisB -c 3 -s \"MNLVDIAILILKLIVAALQLLDAVLKYLK\"
 re_input = {
 "-n" : "^\w[\s\w\-]*$",
 "-c" : "^[1|3]$",
-"-cl" : "^[a-z]{2,5}$",
-"-pH" : "^le7|ge8$",
+"-cl" : "^color$|^bw$",
+"-pH" : "^le7$|^ge8$",
 "-pitch" : "^[0-9]{1,3}$",
 "-s" : "^[A-Za-z\s]+$",
 "-b" : "^[0-9]+$",
 "-sh" : "^[0-9]+$",
-"-r" : "^[0-9]+$",
-"-o" : "^[\/\w]+$",
-"-nter" : "^N|ACE|FOR|ACY|None$",
-"-cter" : "^C|NME|NHE|LIP|None$",
+"-nter" : "^NH3$|^FOR$|^ACY$|^None$$",
+"-cter" : "^COO$|^NHE$|^LIP$|^None$",
 "-mesh" : "^vert|horiz$",
 "-map" : "[\w:,]+", # non-usual amino-acids
 "-cmap" : "[\w:,]+", # colors for non-usual amino acids
 "-chmap" : "[\w:,]+", # colors for non-usual amino acids
-"-rc" : "yes", # random coil representation
-"-repres" : "[\w]+"
+"-repres" : "^helix_origami$|^helical_wheel$|^helical_mesh_vert$|^helical_mesh_horiz$|^beta_sheet$|^beta_sheet_origami$|^random_coil$|^random_coil_origami$"
 }
 
 	# default input values
 input = {
 "-pitch" : 100.,
 "-pH" : "le7",
-"-c" : 1,
+"-c" : 3,
 "-cl" : "color",
 "-b" : 1,
 "-sh" : 0,
-"-nter" : "",
-"-cter" : "",
+"-nter" : "NH3",
+"-cter" : "COO",
 "-map" : {},
 "-cmap" : {},
 "-chmap" : {},
@@ -110,11 +107,15 @@ def check_input(arguments):
 				sys.exit()
 			else:
 				if not re.match(re_input[arg], value.decode('UTF-8'), re.UNICODE):
+					print_info("protein_ORIGAMI")
+					print
 					print "Invalid input for %s: %s" % (arg, value)
 					sys.exit()
 				else:
 					input[arg] = value
-		if  arg == "-h":
+		if arg in ["-nter", "-cter"] and input[arg] == "None":
+			input[arg] = "" 
+		if arg == "-h":
 			print_info(sys.argv[0])
 			sys.exit()
 		if arg == "-map":
