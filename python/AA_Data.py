@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #   This is Protein ORIGAMI, a program for the creation of 3D peptide paper models
-#   Copyright (C) 2018 Sabine Reisser (sreisser@sissa.it)
+#   Copyright (C) 2020 Sabine Reisser (sabine.reisser@mdc-berlin.de)
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License V3 as published by

@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #   This is Protein ORIGAMI, a program for the creation of 3D peptide paper models
-#   Copyright (C) 2018 Sabine Reisser (sreisser@sissa.it)
+#   Copyright (C) 2020 Sabine Reisser (sabine.reisser@mdc-berlin.de)
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License V3 as published by
@@ -34,24 +34,24 @@ def write_head(svgfile):
 def write_cut_first_page(svgfile, height):
 	if height > 0:	
 		svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f " />
+	<path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f " />
 </g>''' % (0, height, vert_line_r[0][0], 0 , 0 , page_height ))
 		add_scissors(svgfile, [40, height], 90)
 	else:
 		svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f " />
+	<path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f " />
 </g>''' % (vert_line_r[0][0], 0 , 0 , page_height ))
 		add_scissors(svgfile, [vert_line_r[0][0], 20], 180)
 
 def write_cut_middle_page(svgfile):
 	svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f" />
+	<path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f" />
 </g>''' % (vert_line_r[0][0], 0 , 0 , first_res_y, -vert_line_r[0][0], 0 ))
 	add_scissors(svgfile, [vert_line_r[0][0], 20], 180)
 
 def write_cut_last_page(svgfile, height):
 	svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f" />
+	<path stroke-dasharray="5,5" d="M %5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f l%5.3f %5.3f" />
 </g>''' % (0, height,  vert_line_r[0][0], 0 ,  0 , first_res_y-height, -vert_line_r[0][0], 0))
 	if height < 0:
 		add_scissors(svgfile, [vert_line_r[0][0], 20], 180)
@@ -70,7 +70,7 @@ def write_tail(svgfile, info):
 def write_info(svgfile):
 	svgfile.write('''<text x="%5.3f" y="%5.3f" style="fill:%s; font-weight:%s; font-size:%.1fpx; text-align:center; text-anchor:left; font-family:Liberation Sans">
 	''' % (130, page_height-70+shift_info, 'black', 'normal', font_size_info))
-	svgfile.write('''       <tspan >
+	svgfile.write('''	   <tspan >
 			Name:
 		</tspan>
 		<tspan x="%5.3f" y="%5.3f">
@@ -87,7 +87,7 @@ def write_info(svgfile):
 
 	svgfile.write('''<text x="%5.3f" y="%5.3f" style="fill:%s; font-weight:%s; font-size:%.1fpx; text-align:center; text-anchor:left; font-family:Liberation Sans">
 	''' % (280, page_height-70+shift_info, 'black', 'normal', font_size_info))
-	svgfile.write('''       <tspan >
+	svgfile.write('''	   <tspan >
 	%s
 		</tspan>
 		<tspan x="%5.3f" y="%5.3f">
@@ -107,7 +107,7 @@ def write_info(svgfile):
 		</tspan>
 	''' % (pH_x, page_height-20+shift_info, pH_string))
 	if write_mass:
-		svgfile.write('''       
+		svgfile.write('''	   
 		<tspan x="%5.3f" y="%5.3f">
 	Mass: %s au
 		</tspan>
@@ -161,7 +161,7 @@ def draw_amino_acid(file, cx, cy, letter, nr, term):
 			else:
 				file.write('<tspan dy="%.1fpx" style="font-size:%.1fpx">NH</tspan>\n' % (gm_n_termini['NH3']['dy1'], gm_n_termini['NH3']['font-size']))
 				file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx">+</tspan>\n' % (gm_n_termini['NH3']['font-size_sup'], gm_n_termini['NH3']['dy2']))
- 				file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx" dx="%.1fpx" >3</tspan>\n</text>\n' % (gm_n_termini['NH3']['font-size_sub'], gm_n_termini['NH3']['dy3'], gm_n_termini['NH3']['dx']))
+				file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx" dx="%.1fpx" >3</tspan>\n</text>\n' % (gm_n_termini['NH3']['font-size_sub'], gm_n_termini['NH3']['dy3'], gm_n_termini['NH3']['dx']))
 		elif term == 'ACE':
 			file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx">CH</tspan>\n' % (gm_n_termini['ACE']['font-size'], gm_n_termini['ACE']['dy1'])) 
 			file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx">3</tspan>\n' % (gm_n_termini['ACE']['font-size_sub'], gm_n_termini['ACE']['dy2']))
@@ -180,7 +180,7 @@ def draw_amino_acid(file, cx, cy, letter, nr, term):
 			file.write('<tspan style="font-size:%.1fpx" dy="%.1f">3</tspan>\n</text>' % ( gm_c_termini['NME']['font-size_sub'], gm_c_termini['NME']['dy2']))
 		elif term == 'NHE':
 			file.write('<tspan style="font-size:%.1fpx" dy="%.1f">NH</tspan>\n' % (gm_c_termini['NHE']['font-size'], gm_c_termini['NHE']['dy1']))
- 			file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx" >2</tspan>\n</text>\n' % (gm_c_termini['NHE']['font-size_sub'], gm_c_termini['NHE']['dy2']))
+			file.write('<tspan style="font-size:%.1fpx" dy="%.1fpx" >2</tspan>\n</text>\n' % (gm_c_termini['NHE']['font-size_sub'], gm_c_termini['NHE']['dy2']))
 		elif term == 'LIP':
 			file.write('<tspan dy="%.1f" style="font-size:%.1fpx">NH-R</tspan>\n </text>\n' % (gm_c_termini['LIP']['dy'], gm_c_termini['LIP']['font-size']))
 

@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #   This is Protein ORIGAMI, a program for the creation of 3D peptide paper models
-#   Copyright (C) 2018 Sabine Reisser (sreisser@sissa.it)
+#   Copyright (C) 2020 Sabine Reisser (sabine.reisser@mdc-berlin.de)
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License V3 as published by
@@ -18,9 +18,12 @@ import string, sys, re, math, locale
 import AA_Data as aa
 
 def print_info(program):
-	print """This is Protein ORIGAMI v1.0 .
+	print("""This is Protein ORIGAMI v1.1 .
 
-Please cite: Protein ORIGAMI - a program for the creation of 3D peptide paper models, S. Rei\{ss}er, S. Prock, H. Heinzmann, A. S. Ulrich. Submitted (2018)
+Please cite: S. Reißer, S. Prock, H. Heinzmann, A.S. Ulrich, 
+Protein ORIGAMI: A program for the creation of 3D paper models of folded peptides,
+Biochemistry and Molecular Biology Education 46 (4), 403-409, 2020
+
 
 Options:
 	-n name of your peptide
@@ -40,7 +43,7 @@ Options:
 	-sh shift geometry by N positions (integer, default: 0)
 	-h this info
 example: %s -n TisB -c 3 -s \"MNLVDIAILILKLIVAALQLLDAVLKYLK\"
-""" % program
+""" % program)
 
 
 
@@ -106,13 +109,13 @@ def check_input(arguments):
 				value = sys.argv[key+1].strip()
 			except IndexError:
 				print_info("protein_ORIGAMI")
-				print "Invalid input for %s" % arg
+				print("Invalid input for %s" % arg)
 				sys.exit()
 			else:
-				if not re.match(re_input[arg], value.decode('UTF-8'), re.UNICODE):
+				if not re.match(re_input[arg], value, re.UNICODE):
 					print_info("protein_ORIGAMI")
-					print
-					print "Invalid input for %s: %s" % (arg, value)
+					print("\n")
+					print("Invalid input for %s: %s" % (arg, value))
 					sys.exit()
 				else:
 					input[arg] = value

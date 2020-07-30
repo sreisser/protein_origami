@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #   This is Protein ORIGAMI, a program for the creation of 3D peptide paper models
-#   Copyright (C) 2018 Sabine Reisser (sreisser@sissa.it)
+#   Copyright (C) 2020 Sabine Reisser (sabine.reisser@mdc-berlin.de)
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License V3 as published by
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 	mod_object.sequence_list = []
 	for letter in mod_object.sequence:
 		if re.match("^[a-z]$", letter):
-			print "D amino acid: %s" % letter
+			print("D amino acid: %s" % letter)
 		if letter in aa.name_map.keys() or letter.upper() in aa.name_map.keys():
 			mod_object.sequence_list.append(letter)
 		elif re.match("[A-Za-z]", letter):
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
 		try: charge_i = aa.charge_map[letter.upper()]
 		except:
-			print "missing ", letter.upper() 
+			print("missing ", letter.upper() )
 			mod_object.write_charge = False
 			pass
 		else:

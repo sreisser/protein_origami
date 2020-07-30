@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #   This is Protein ORIGAMI, a program for the creation of 3D peptide paper models
-#   Copyright (C) 2018 Sabine Reisser (sreisser@sissa.it)
+#   Copyright (C) 2020 Sabine Reisser (sabine.reisser@mdc-berlin.de)
 
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License V3 as published by
@@ -41,7 +41,7 @@ def  write_head(svgfile, page_width, page_height, key, n_aa):
 	else:
 		line_1 = line_length
 		line_2 = y_interval * (n_aa-key-5)
-	for i in xrange(0,3):
+	for i in range(0,3):
 		x1 = vert_line_l[0][0] + i * x_interval
 		y1 = vert_line_l[0][1]
 		x2 = x1
@@ -49,7 +49,7 @@ def  write_head(svgfile, page_width, page_height, key, n_aa):
 		svgfile.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
 	''' % (x1, y1-circle_radius, x2, y2+circle_radius, other_colors['grey']))
 
-	for j in xrange(4,7):
+	for j in range(4,7):
 		x1 = vert_line_l[0][0] + j * x_interval
 		y1 = vert_line_l[0][1]
 		x2 = x1
@@ -58,11 +58,11 @@ def  write_head(svgfile, page_width, page_height, key, n_aa):
 			svgfile.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
 	''' % (x1, y1-circle_radius, x2, y2+circle_radius, other_colors['grey']))
 	svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M%5.3f %5.3f l0 %5.3f " />
+	<path stroke-dasharray="5,5" d="M%5.3f %5.3f l0 %5.3f " />
 </g>''' % (vert_line_l[0][0] + 3 * x_interval, vert_line_l[0][1]-circle_radius, line_length+2*circle_radius+2*term_circle_radius))
 	if (n_aa - key > 5):
 		svgfile.write('''<g fill="none" stroke="black" stroke-width="1">
-    <path stroke-dasharray="5,5" d="M%5.3f %5.3f l%5.3f 0" />
+	<path stroke-dasharray="5,5" d="M%5.3f %5.3f l%5.3f 0" />
 </g>''' % (vert_line_l[0][0] + 3 * x_interval, vert_line_l[0][1]-circle_radius,x_interval*4))
 
 
@@ -77,7 +77,7 @@ def write_tail(svgfile, info):
 def write_info(svgfile):
 	svgfile.write('''<text x="%5.3f" y="%5.3f" style="fill:%s; font-weight:%s; font-size:%dpx; text-align:center; text-anchor:left; font-family:Liberation Sans">
 	''' % (130, page_height-70, 'black', 'normal', font_size_info))
-	svgfile.write('''       <tspan >
+	svgfile.write('''	   <tspan >
 			Name:
 		</tspan>
 		<tspan x="%5.3f" y="%5.3f">
@@ -91,7 +91,7 @@ def write_info(svgfile):
 
 	svgfile.write('''<text x="%5.3f" y="%5.3f" style="fill:%s; font-weight:%s; font-size:%dpx; text-align:center; text-anchor:left; font-family:Liberation Sans">
 	''' % (280, page_height-70, 'black', 'normal', font_size_info))
-	svgfile.write('''       <tspan >
+	svgfile.write('''	   <tspan >
 	%s
 		</tspan>
 		<tspan x="%5.3f" y="%5.3f">
@@ -191,13 +191,13 @@ def draw_amino_acid(file, letter, nr, key, n_aa, term):
 		p2['i_font_color'] = i_font_color
 
 	params = [p1, p2]
-        if term == '':
-                if (key % 2) == 0:
-                        file.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
-                ''' % (p2['cx']-x_interval, p2['cy'], p2['cx']+x_interval, p2['cy'], other_colors['grey']))
-                else:
-                        file.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
-                ''' % (p1['cx']-x_interval, p1['cy'], p1['cx']+x_interval, p1['cy'], other_colors['grey']))
+	if term == '':
+		if (key % 2) == 0:
+			file.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
+				''' % (p2['cx']-x_interval, p2['cy'], p2['cx']+x_interval, p2['cy'], other_colors['grey']))
+		else:
+			file.write('''<line x1="%5.3f" y1="%5.3f" x2="%5.3f" y2="%5.3f" style="stroke:%s; stroke-width:2px;" />
+				''' % (p1['cx']-x_interval, p1['cy'], p1['cx']+x_interval, p1['cy'], other_colors['grey']))
 
 
 	for p in params:
